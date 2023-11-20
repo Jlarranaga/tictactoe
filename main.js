@@ -87,7 +87,7 @@ function handleBlock(event){
     const s = cell.toString()
     const row = s.split("")
     const rowIdx = row.pop()
-
+    
     if(rowIdx === -1) return
 
     //colArr[rowIdx] = turn
