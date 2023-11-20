@@ -86,8 +86,11 @@ function handleBlock(event){
     const cell = event.srcElement.id
     const s = cell.toString()
     const row = s.split("")
-    const rowIdx = row.pop()
-    
+    let rowIdx = row.pop()
+    rowIdx = parseInt(rowIdx);
+    console.log(typeof rowIdx)
+
+
     if(rowIdx === -1) return
 
     //colArr[rowIdx] = turn
@@ -95,11 +98,12 @@ function handleBlock(event){
 
     turn *= -1
 
-    winner = getWinner(colIdx, rowIdx)
+   winner = getWinner(colIdx, rowIdx)
     render();
 }
 
 function countAdjacent (colIdx, rowIdx, colOffset, rowOffset){
+    console.log("ColIdx: ",colIdx, "rowIdx", rowIdx)
     const player = board[colIdx][rowIdx]
     let count = 0
 
