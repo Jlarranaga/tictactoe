@@ -1,0 +1,105 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+    height: 100vh;
+    margin: 0;
+    background-color: rgb(187, 180, 180);
+
+}
+
+header {
+    color: rgb(68, 67, 67);
+    font-size: 8vmin;
+    letter-spacing: 2vmin;
+
+}
+
+h2{
+    font-size: 5vmin;
+    color: blue;
+}
+
+#board{
+
+    display: grid;
+    grid-template-columns: repeat(3, 15vmin);
+    grid-template-rows: repeat(3,15vmin);
+    margin-top: 2vmin;
+    margin-bottom: 4vmin;
+
+}
+
+#board>div{
+    border: 0.1vmin solid black;
+    transition: transform 150ms ease-in;
+    
+    
+}
+
+#board>#c0r2{
+    border-top: 0.0vmin;
+    border-left: 0vmin;
+    content: "X";
+}
+#board>#c0r1{
+    border-left-width: 0;
+}
+#board>#c0r0{
+    border-left: 0;
+    border-bottom: 0;
+}
+#board>#c1r2{
+    border-top: 0;
+}
+#board>#c1r0{
+    border-bottom: 0;
+}
+#board>#c2r2{
+    border-right: 0;
+    border-top: 0;
+}
+#board>#c2r1{
+    border-right: 0;
+}
+#board>#c2r0{
+    border-right: 0;
+    border-bottom: 0;
+}
+
+#board>div:hover{
+    border-style: solid;
+    transform: scale(1.1);
+    background-color: rgb(173, 129, 214);
+    transition: transform 150ms ease-in;
+}
+
+#reset{
+    color: purple;
+    border: 0.2vmin solid black;
+    border-radius: 2vmin;
+    font-size: 3vmin;
+    transition: transform 150ms ease-in;
+    
+}
+
+#reset:hover {
+    transform: scale(1.1);
+    transition: transform 150ms ease-in;
+    background-color: silver;
+    color:blueviolet;
+}
+
+header{
+    transition: transform 150ms ease-in;
+}
+
+header:hover{
+    transform: scale(1.1);
+    transition: transform 150ms ease-in;
+}
