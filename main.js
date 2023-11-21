@@ -10,6 +10,8 @@ const markers = {
 let board
 let turn
 let winner
+let rowIdx = 0
+let player
 
 //*Cached DOM Elements
 const messageEl = document.querySelector('h2')
@@ -20,7 +22,8 @@ const markerEl = [...document.querySelectorAll('#board > div')] //<-- board in a
 function init (){
     turn = 1
     winner = null;
-
+    resetButton.removeAttribute('style')
+    
     board = [
         [0,0,0],
         [0,0,0],
@@ -42,8 +45,9 @@ function renderBoard(){
             const cellId = `c${colIdx}r${rowIdx}`
 
             const cellEl = document.getElementById(cellId)
-
+            
             cellEl.innerText = markers[cellValue]
+           
                 //TODO fix size of X and O on board
         })
     })
@@ -59,42 +63,72 @@ function renderControls(){
 }
 
 function renderMessage(){
+
+   
+    
     if (winner === 'T'){
-        messageEl.innerText = 'Tie!'
-    }else if(winner){
-       // messageEl.innertext = 
+        messageEl.innerText = "It's a tie!" 
+    }else if(winner === 'taken'){
+        messageEl.innerText = "That spot is taken, choose another..."
+        
+    }else if (winner === 'over'){
+        messageEl.innerText = `${player} already won! Game Over!`
+        resetButton.style.backgroundColor = 'red'
+        resetButton.style.color = 'black'
+        resetButton.style.fontWeight = 'bold'
+    }else if (winner){
+        messageEl.innerHTML = `
+        <span style="color: ${markers[winner]}">
+        ${markers[winner].toUpperCase()} is the winner!</span>
+        `
+        player = markers[winner]
+    }else{
+        messageEl.innerHTML = `
+        <span style="color: ${markers[turn]}">
+        ${markers[turn].toUpperCase()}'s Turn!</span>
+        `
     }
 }
 
 function render(){
     renderBoard();
     renderMessage();
-    renderControls();
+    //renderControls();
 }
 
 function handleBlock(event){
 
-    //board[a][b] = markerEl.indexOf(event.target)
-
-    const colIdx = markerEl.indexOf(event.target)
-    //const rowIdx = markerEl[colIdx].indexOf(event.target)
-
-    const colArr = board[colIdx]
-    //const rowIdx = colArr.indexOf(markerEl)
-
+    if (winner === 1 || winner === 'over' || winner === -1){
+        winner = 'over'
+        renderMessage()
+        return
+    }
 
     const cell = event.srcElement.id
+    console.log('cell', cell)
     const s = cell.toString()
     const row = s.split("")
     let rowIdx = row.pop()
-    rowIdx = parseInt(rowIdx);
+    let colIdx = row.splice(1,1)
+    rowIdx = parseInt(rowIdx)
+    colIdx = parseInt(colIdx)
+
     console.log(typeof rowIdx)
+    console.log('this is rowIdx in HB', rowIdx)
 
+    console.log(typeof colIdx)
+    console.log('this is colIdx in HB', colIdx)
 
-    if(rowIdx === -1) return
+    const colArr = board[colIdx]
 
-    //colArr[rowIdx] = turn
-    //board[a][b] = turn
+    if(colArr[rowIdx] === -1 || colArr[rowIdx] === 1) {
+        winner = 'taken';
+        renderMessage();
+        return;
+    }
+    
+
+    colArr[rowIdx] = turn
 
     turn *= -1
 

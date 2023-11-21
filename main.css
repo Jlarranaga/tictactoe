@@ -43,33 +43,32 @@ h2{
 }
 
 #board>#c0r2{
-    border-top: 0.0vmin;
+    border-bottom: 0.0vmin;
     border-left: 0vmin;
-    content: "X";
 }
 #board>#c0r1{
-    border-left-width: 0;
+    border-left: 0;
 }
 #board>#c0r0{
     border-left: 0;
-    border-bottom: 0;
-}
-#board>#c1r2{
     border-top: 0;
 }
-#board>#c1r0{
+#board>#c1r2{
     border-bottom: 0;
+}
+#board>#c1r0{
+    border-top: 0;
 }
 #board>#c2r2{
     border-right: 0;
-    border-top: 0;
+    border-bottom: 0;
 }
 #board>#c2r1{
     border-right: 0;
 }
 #board>#c2r0{
     border-right: 0;
-    border-bottom: 0;
+    border-top: 0;
 }
 
 #board>div:hover{
