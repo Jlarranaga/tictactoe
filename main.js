@@ -45,6 +45,10 @@ function renderBoard(){
             const cellId = `c${colIdx}r${rowIdx}`
 
             const cellEl = document.getElementById(cellId)
+             
+            //cellEl.innerHTML = `<span style = "font-size: 15vw;"> ${markers[cellValue]}</span>`
+            //I tried to update the font size of the markers but the code would break when I did. 
+            //not sure why
             
             cellEl.innerText = markers[cellValue]
            
@@ -54,13 +58,6 @@ function renderBoard(){
 
 }
 
-function renderControls(){
-    markerEl.forEach((markerEl, colIdx)=>{
-        //const hideMarker = !board[colIdx].includes(0) || winner
-
-        //markerEl.style.visibility = hideMarker ? 'hidden' : 'visible'
-    })
-}
 
 function renderMessage(){
 
@@ -93,7 +90,7 @@ function renderMessage(){
 function render(){
     renderBoard();
     renderMessage();
-    //renderControls();
+    
 }
 
 function handleBlock(event){
